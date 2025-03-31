@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AgentOS - Organização de Agentes</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+    header {
+      background-color: #004080;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+    header p {
+      font-size: 1.1em;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+    #cy {
+      width: 100%;
+      height: 500px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+    }
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #004080;
+      color: #fff;
+    }
+  </style>
+  <script src="https://unpkg.com/cytoscape@3.22.0/dist/cytoscape.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>AgentOS</h1>
+    <p>Organize seus agentes como nodes em uma rede inteligente</p>
+  </header>
+  <div class="container">
+    <div id="cy"></div>
+  </div>
+  <footer>
+    <p>© 2025 AgentOS. Todos os direitos reservados.</p>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var cy = cytoscape({
+        container: document.getElementById('cy'),
+        elements: [
+          { data: { id: 'a', label: 'Agente A' } },
+          { data: { id: 'b', label: 'Agente B' } },
+          { data: { id: 'c', label: 'Agente C' } },
+          { data: { id: 'd', label: 'Agente D' } },
+          { data: { id: 'e', label: 'Agente E' } },
+          { data: { id: 'f', label: 'Agente F' } },
+          { data: { source: 'a', target: 'b' } },
+          { data: { source: 'a', target: 'c' } },
+          { data: { source: 'b', target: 'd' } },
+          { data: { source: 'c', target: 'd' } },
+          { data: { source: 'd', target: 'e' } },
+          { data: { source: 'e', target: 'f' } }
+        ],
+        style: [
+          {
+            selector: 'node',
+            style: {
+              'background-color': '#004080',
+              'label': 'data(label)',
+              'color': '#fff',
+              'text-valign': 'center',
+              'text-halign': 'center',
+              'width': '50px',
+              'height': '50px',
+              'font-size': '12px'
+            }
+          },
+          {
+            selector: 'edge',
+            style: {
+              'width': 3,
+              'line-color': '#ccc',
+              'target-arrow-color': '#ccc',
+              'target-arrow-shape': 'triangle',
+              'curve-style': 'bezier'
+            }
+          }
+        ],
+        layout: {
+          name: 'cose',
+          animate: true
+        }
+      });
+    });
+  </script>
+</body>
+</html>
