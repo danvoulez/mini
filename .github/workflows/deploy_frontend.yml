@@ -1,0 +1,21 @@
+name: Deploy Frontend to Vercel
+
+on:
+  push:
+    paths:
+      - 'frontend/**'
+      - '.github/workflows/deploy_frontend.yml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          scope: voulezvous-ai
+          vercel-args: '--prod'
+          working-directory: ./frontend
